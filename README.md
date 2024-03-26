@@ -23,7 +23,7 @@ Permitted file extensions are '.heic', '.jpg', '.jpeg', '.png', '.mov', '.mp4'.
 2. Install dependencies using pip:
 
     ```bash
-    python -m pip install "exifread<3
+    python -m pip install "exifread<3"
     ```
 
 ## Usage
