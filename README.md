@@ -1,10 +1,11 @@
 # Iphone Photos Backup Tool
 
 Iphone Photos Backup Tool is a Python script designed to clean up files in a specified directory based on certain criteria.
-It removes files
-- with unallowed file extensions,
-- files containing "_E" in their names,
-- and deletes files that already exist in another directory while comparing their file name and "Date taken" metadata.
+It deletes
+1. files with unallowed file extensions,
+2. files containing "_E" in their names,
+3. JPEG/JPG files if a HEIC file with the same name and "Date taken" metadata exists in the same directory,
+4. files that already exist in another directory (recursively) while comparing their file name and "Date taken" metadata,
 
 Permitted file extensions are '.heic', '.jpg', '.jpeg', '.png', '.mov', '.mp4'.
 
@@ -29,14 +30,21 @@ Permitted file extensions are '.heic', '.jpg', '.jpeg', '.png', '.mov', '.mp4'.
 ## Usage
 
 ```bash
-python filter_files.py current_dir other_dir
+python filter_files.py current_dir [other_dir]
 ```
 
-Replace `current_dir` with the path to the directory containing the files to clean,
-and `other_dir` with the path to the directory for comparison.
+- `current_dir`: Path to the directory containing the files to clean.
+- `other_dir` (optional): Path to the directory for comparison.
+
+If only current_dir is provided, the tool will clean up files in current_dir according to the specified criteria 1-3.
+If both current_dir and other_dir are provided, the tool will also compare files between the two directories.
 
 ### Example
 
 ```bash
+# Clean up files in current_dir only
+python filter_files.py "iPhone\202312__"
+
+# Clean up files in current_dir and compare with other_dir (recursively)
 python filter_files.py "iPhone\202312__" "Pictures"
 ```
